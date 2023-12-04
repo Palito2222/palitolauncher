@@ -1,21 +1,19 @@
-using System.Collections;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 public class LauncherSettings : MonoBehaviour
 {
-    [Header("General Things")]
+    [Title("General Things", TitleAlignment = TitleAlignments.Centered, HorizontalLine = true)]
     public GameObject SettingsMenu;
     public Button closeSettingMenu;
     public Button openSettingMenu;
     public LauncherUIManager GameCS;
 
-    [Header("Day/Night Mode")]
+    [Title("Day/Night Mode", TitleAlignment = TitleAlignments.Centered, HorizontalLine = true)]
     public GameObject gameBG;
     public Sprite nightmodeBG;
     public Sprite daymodeBG;
@@ -26,22 +24,30 @@ public class LauncherSettings : MonoBehaviour
     public Color NightIconsColor;
     public Color NightOptionsBGColor;
     public Color NightOptionsBorderColor;
+    public Color NightLenguageOptionsTextColor;
+
     public Color DayTextColor;
     public Color DayIconsColor;
     public Color DayOptionsBGColor;
     public Color DayOptionsBorderColor;
+    public Color DayLenguageOptionsTextColor;
     public TextMeshProUGUI gameName;
     public TextMeshProUGUI gameVersion;
+    public TextMeshProUGUI patchNotes;
+    public TextMeshProUGUI downloadButtonText;
+    public TextMeshProUGUI lenguageOptionsLabelText;
+    public TextMeshProUGUI lenguageOptionsItemLabelText;
+    public Image lenguageOptionsTemplateBG;
+    public Image itemBG;
     public Image settingsButton;
     public Image changeModeButton;
     public Image optionsBackground;
     public Image optionsBorderBackground;
 
-    public TextMeshProUGUI lenguageDropdownText;
-
-    [Header("Lenguage Settings")]
+    [Title("Lenguage Things", TitleAlignment = TitleAlignments.Centered, HorizontalLine = true)]
 
     public TMP_Dropdown lenguageDropdown;
+    public TextMeshProUGUI lenguageDropdownText;
 
     private void Start()
     {
@@ -71,19 +77,22 @@ public class LauncherSettings : MonoBehaviour
         }
     }
 
+    [Title("Buttons Test", TitleAlignment = TitleAlignments.Centered, HorizontalLine = true)]
+    [Button("Set Night Mode UI")]
     private void ApplyNightMode()
     {
         gameBG.GetComponent<Image>().sprite = nightmodeBG;
-        SetColors(NightTextColor, NightIconsColor, NightOptionsBGColor, NightOptionsBorderColor);
+        SetColors(NightTextColor, NightIconsColor, NightOptionsBGColor, NightOptionsBorderColor, NightLenguageOptionsTextColor);
     }
 
+    [Button("Set Day Mode UI")]
     private void ApplyDayMode()
     {
         gameBG.GetComponent<Image>().sprite = daymodeBG;
-        SetColors(DayTextColor, DayIconsColor, DayOptionsBGColor, DayOptionsBorderColor);
+        SetColors(DayTextColor, DayIconsColor, DayOptionsBGColor, DayOptionsBorderColor, DayLenguageOptionsTextColor);
     }
 
-    private void SetColors(Color textColor, Color iconsColor, Color optionsBGColor, Color optionsBorderColor)
+    private void SetColors(Color textColor, Color iconsColor, Color optionsBGColor, Color optionsBorderColor, Color LenguageOptionsTextColor)
     {
         gameName.color = textColor;
         gameVersion.color = textColor;
@@ -92,6 +101,13 @@ public class LauncherSettings : MonoBehaviour
         optionsBackground.color = optionsBGColor;
         optionsBorderBackground.color = optionsBorderColor;
         lenguageDropdownText.color = textColor;
+        lenguageDropdown.image.color = optionsBGColor;
+        patchNotes.color = textColor;
+        downloadButtonText.color = textColor;
+        lenguageOptionsLabelText.color = LenguageOptionsTextColor;
+        lenguageOptionsItemLabelText.color = LenguageOptionsTextColor;
+        itemBG.color = optionsBGColor;
+        lenguageOptionsTemplateBG.color = optionsBGColor;
     }
     #endregion
 
@@ -120,7 +136,7 @@ public class LauncherSettings : MonoBehaviour
 
         foreach (var locale in availableLanguages)
         {
-            languageNames.Add(locale.name);
+            languageNames.Add(locale.LocaleName);
         }
 
         // Limpiar las opciones actuales del dropdown

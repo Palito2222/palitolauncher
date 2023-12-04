@@ -19,7 +19,7 @@ public class LauncherUIManager : MonoBehaviour
     private const string GitHubApiBaseUrl = "https://api.github.com";
     private const string RepositoryOwner = "Palito2222";
     private const string RepositoryName = "AnimeGame";
-    [SerializeField] private string token = "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";
+    [SerializeField] private string token = "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";
 
     public GameObject errorGO;
     public TextMeshProUGUI errorText;
@@ -88,6 +88,10 @@ public class LauncherUIManager : MonoBehaviour
                 return SystemLanguage.English;
             case "es":
                 return SystemLanguage.Spanish;
+            case "vi":
+                return SystemLanguage.Vietnamese;
+            case "ja":
+                return SystemLanguage.Japanese;
             // Agrega más casos según los idiomas que desees admitir
             default:
                 return SystemLanguage.English; // Idioma desconocido, puedes establecer un idioma por defecto
@@ -494,8 +498,6 @@ public class LauncherUIManager : MonoBehaviour
             if (latestRelease != null)
             {
                 latestTag = latestRelease.tag_name;
-                Debug.Log("Tag actual: " + currentTag);
-                Debug.Log("Ultimo Tag: " + latestTag);
 
                 if (currentTag != null && latestTag != currentTag)
                 {

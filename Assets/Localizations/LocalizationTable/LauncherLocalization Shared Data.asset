@@ -47,6 +47,10 @@ MonoBehaviour:
     m_Key: Launcher.Settings.Lenguage
     m_Metadata:
       m_Items: []
+  - m_Id: 692308873539584
+    m_Key: Launcher.PatchNotes
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
